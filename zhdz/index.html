@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>沾化冬枣</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="js/1.9.1jquery.min.js"></script>
+	<script>
+		$(function(){
+			$("html").css('font-size',($(window).width()/100)+'px'); //跟据浏览器的宽度设置html根节点用rem来实现
+		})
+		
+	</script>
+	<style>
+		.mt-number-animate{ font-family: '01_digitgraphicsregular'; line-height:2.1rem; height: 2rem;/*设置数字显示高度*/; font-size: 2rem;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; }
+		.mt-number-animate .mt-number-animate-dot{ width: 20px;/*设置分割符宽度*/ line-height: 2rem; float: left; text-align: center;}
+		.mt-number-animate .mt-number-animate-dom{ width: 25px;/*设置单个数字宽度*/ text-align: center; float: left; position: relative; top: 0;margin-right:3px;}
+		.mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left;}
+		.taobaos dd .mt-number-animate{font-size:1rem;line-height:1.3rem;height:1rem;padding-left: 0.4rem;}
+		.taobaos dd .mt-number-animate .mt-number-animate-dot{width: 0rem;}
+		.taobaos dd .mt-number-animate .mt-number-animate-dom{width: 0.7rem;}
+	</style>
+	
+
+</head>
+<body>
+	<input type="button" value="点我全屏" id="fsbutton" style="position:fixed;top:0;right:0;background:blue;z-index:3;color:#fff;cursor:pointer;"/>
+	<div id="container">	<!--全屏-->
+		<div id="specialstuff" >  <!--全屏-->
+			<span id="fsstatus" style="display:none;"></span>
+			<div class="body_bg"><img src="images/body_bg.jpg" /></div> <!--body背景图-->
+			<div class="head_bg"><img src="images/head_bg.png" /></div>	<!--head背景图-->
+			<div class="box">
+				<!--头部-->
+				<header>
+					<div class="head">
+						<h1>沾化冬枣大数据管理系统</h1>
+						<span id="time"></span>
+					</div>
+				</header>
+				<!--头部-->
+				<!--主体内容-->
+				<section>
+					<!--主体内容-->
+					<div class="content clearfloat">
+						<!--左侧内容-->
+						<div class="content_left" >
+							
+							<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+							<div id="main" style="height:60rem;width:82%;margin-left:10%;margin-top:3rem;"></div>
+							<!-- ECharts单文件引入 -->
+							
+						</div>
+						<!--左侧内容-->
+						
+						<!--右侧内容-->
+						<div class="content_right">
+							<!--总交易额-->
+							<div class="sum">
+								<div class="sum_bg"><img src="images/sum_bg.png"></div>
+								<dl>
+									<dt>周交易额</dt>
+									<!--数字滚动-->
+									<dd>
+										<div class="numberRun" style=" text-align:center; font-size:5rem;line-height: 3.5rem; color:yellow;"></div>
+									</dd>
+									<!--数字滚动-->
+								</dl>
+							</div>
+							<!--总交易额-->
+							
+							<!--平台-->
+							<div class="taobaos clearfloat">
+								<div class="detail_bg"><img src="images/detail_bg.png"></div>
+								<dl class="clearfloat">
+									<dt>天猫</dt>
+									<dd>金额</dd>
+									<dd>订单</dd>
+									<dd style="color:#22ceb1;"><div id="numberRun1" ></div></dd>
+									<dd style="color:#22ceb1;"><div id="numberRun2" ></div></dd>
+								</dl>
+								<dl class="clearfloat">
+									<dt>京东</dt>
+									<dd>金额</dd>
+									<dd>订单</dd>
+									<dd style="color:#22ceb1;"><div id="numberRun3" ></div></dd>
+									<dd style="color:#22ceb1;"><div id="numberRun4" ></div></dd>
+								</dl>
+								<dl style="width:100%;height:1.7rem;"></dl>
+								<dl class="clearfloat">
+									<dt>淘宝</dt>
+									<dd>金额</dd>
+									<dd>订单</dd>
+									<dd style="color:#22ceb1;"><div id="numberRun5" ></div></dd>
+									<dd style="color:#22ceb1;"><div id="numberRun6" ></div></dd>
+								</dl>
+								<dl class="clearfloat">
+									<dt>自营</dt>
+									<dd>金额</dd>
+									<dd>订单</dd>
+									<dd style="color:#22ceb1;"><div id="numberRun7" ></div></dd>
+									<dd style="color:#22ceb1;"><div id="numberRun8" ></div></dd>
+								</dl>
+							</div>
+							<!--平台-->
+							
+							<!--留言文字滚动-->
+								<div class="leave">
+									<h2>实时订单<span>Order monitor</span></h2>
+									
+										<div id="donate_carousel" style="border:0px;overflow:hidden;height:12rem;">
+											<ul class="donate_bar" id="orderlist">
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+												<li> <span style="color:#e9e80a;">188****2222</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣（一代）</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">5000元</span></li>
+											</ul>
+										</div>
+									
+								</div>
+							<!--留言文字滚动-->
+							
+						</div>
+						<!--右侧内容-->
+						
+					</div>
+					<!--主体内容-->
+				
+				</section>
+				<!--主体内容-->
+			</div>					
+		</div>
+			
+		
+	</div>
+	
+	<script>
+
+(function() {
+	var 
+		fullScreenApi = { 
+			supportsFullScreen: false,
+			isFullScreen: function() { return false; }, 
+			requestFullScreen: function() {}, 
+			cancelFullScreen: function() {},
+			fullScreenEventName: '',
+			prefix: ''
+		},
+		browserPrefixes = 'webkit moz o ms khtml'.split(' ');
+	
+	// check for native support
+	if (typeof document.cancelFullScreen != 'undefined') {
+		fullScreenApi.supportsFullScreen = true;
+	} else {	 
+		// check for fullscreen support by vendor prefix
+		for (var i = 0, il = browserPrefixes.length; i < il; i++ ) {
+			fullScreenApi.prefix = browserPrefixes[i];
+			
+			if (typeof document[fullScreenApi.prefix + 'CancelFullScreen' ] != 'undefined' ) {
+				fullScreenApi.supportsFullScreen = true;
+				
+				break;
+			}
+		}
+	}
+	
+	// update methods to do something useful
+	if (fullScreenApi.supportsFullScreen) {
+		fullScreenApi.fullScreenEventName = fullScreenApi.prefix + 'fullscreenchange';
+		
+		fullScreenApi.isFullScreen = function() {
+			switch (this.prefix) {	
+				case '':
+					return document.fullScreen;
+				case 'webkit':
+					return document.webkitIsFullScreen;
+				default:
+					return document[this.prefix + 'FullScreen'];
+			}
+		}
+		fullScreenApi.requestFullScreen = function(el) {
+			return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
+		}
+		fullScreenApi.cancelFullScreen = function(el) {
+			return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
+		}		
+	}
+
+	// jQuery plugin
+	if (typeof jQuery != 'undefined') {
+		jQuery.fn.requestFullScreen = function() {
+	
+			return this.each(function() {
+				var el = jQuery(this);
+				if (fullScreenApi.supportsFullScreen) {
+					fullScreenApi.requestFullScreen(el);
+				}
+			});
+		};
+	}
+
+	// export api
+	window.fullScreenApi = fullScreenApi;	
+})();
+
+</script>
+
+<script>
+
+// do something interesting with fullscreen support
+var fsButton = document.getElementById('fsbutton'),
+	fsElement = document.getElementById('specialstuff'),
+	fsStatus = document.getElementById('fsstatus');
+
+
+if (window.fullScreenApi.supportsFullScreen) {
+	fsStatus.innerHTML = '你的浏览器支持全屏';
+	fsStatus.className = 'fullScreenSupported';
+	
+	// handle button click
+	fsButton.addEventListener('click', function() {
+		window.fullScreenApi.requestFullScreen(fsElement);
+	}, true);
+	
+	fsElement.addEventListener(fullScreenApi.fullScreenEventName, function() {
+		if (fullScreenApi.isFullScreen()) {
+			fsStatus.innerHTML = '全屏状态';
+			fsElement.className = 'fullScreenSupported'
+		} else {
+			fsStatus.innerHTML = '';
+		}
+	}, true);
+	
+} else {
+	fsStatus.innerHTML = '抱歉：你的浏览器不支持全屏';
+}
+
+</script>
+
+<script src="js/echarts-all.js"></script>
+							<script type="text/javascript">
+							
+		
+							
+							
+							
+								// 基于准备好的dom，初始化echarts图表
+								var myChart = echarts.init(document.getElementById('main')); 
+								
+								var option = {
+									
+									color: ['gold','aqua','lime'],
+									title : {
+										x:'center',
+										textStyle : {
+											color: '#fff'
+										}
+									},
+									tooltip : {
+										trigger: 'item',
+										formatter: '{b}'
+									},
+									legend: {
+										orient: 'vertical',
+										x:'left',
+										data:[''],
+										selectedMode: 'single',
+										selected:{
+											'上海 Top10' : false,
+											'广州 Top10' : false
+										},
+										textStyle : {
+											color: '#fff'
+										}
+									},
+									
+									dataRange: {
+										show:false,
+										min : 0,
+										max : 1000,
+										calculable : true,
+										color: ['#ff3333', 'orange', 'yellow','lime','aqua'],
+										textStyle:{
+											color:'#fff'
+										}
+									},
+									series : [
+										{
+											name: '全国',
+											type: 'map',
+											roam: false,
+											hoverable: false,
+											mapType: 'china',
+											mapLocation:{x:'center',y:'certer'},
+											itemStyle:{
+												normal:{
+													borderColor:'rgba(100,149,237,1)',
+													borderWidth:0.5,
+													areaStyle:{
+														color: '#1b1b1b'
+													}
+												}
+											},
+											data:[],
+											
+											geoCoord: {
+												'上海': [121.4648,31.2891],
+												'东莞': [113.8953,22.901],
+												'山东': [118.7073,37.5513],
+												'东营': [118.7073,37.5513],
+												'中山': [113.4229,22.478],
+												'临汾': [111.4783,36.1615],
+												'临沂': [118.3118,35.2936],
+												'丹东': [124.541,40.4242],
+												'丽水': [119.5642,28.1854],
+												'乌鲁木齐': [87.9236,43.5883],
+												'佛山': [112.8955,23.1097],
+												'保定': [115.0488,39.0948],
+												'兰州': [103.5901,36.3043],
+												'包头': [110.3467,41.4899],
+												'北京': [116.4551,40.2539],
+												'北海': [109.314,21.6211],
+												'南京': [118.8062,31.9208],
+												'南宁': [108.479,23.1152],
+												'南昌': [116.0046,28.6633],
+												'南通': [121.1023,32.1625],
+												'厦门': [118.1689,24.6478],
+												'台州': [121.1353,28.6688],
+												'合肥': [117.29,32.0581],
+												'呼和浩特': [111.4124,40.4901],
+												'咸阳': [108.4131,34.8706],
+												'哈尔滨': [127.9688,45.368],
+												'唐山': [118.4766,39.6826],
+												'嘉兴': [120.9155,30.6354],
+												'大同': [113.7854,39.8035],
+												'大连': [122.2229,39.4409],
+												'天津': [117.4219,39.4189],
+												'太原': [112.3352,37.9413],
+												'威海': [121.9482,37.1393],
+												'宁波': [121.5967,29.6466],
+												'宝鸡': [107.1826,34.3433],
+												'宿迁': [118.5535,33.7775],
+												'常州': [119.4543,31.5582],
+												'广州': [113.5107,23.2196],
+												'廊坊': [116.521,39.0509],
+												'延安': [109.1052,36.4252],
+												'张家口': [115.1477,40.8527],
+												'徐州': [117.5208,34.3268],
+												'德州': [116.6858,37.2107],
+												'惠州': [114.6204,23.1647],
+												'成都': [103.9526,30.7617],
+												'扬州': [119.4653,32.8162],
+												'承德': [117.5757,41.4075],
+												'拉萨': [91.1865,30.1465],
+												'无锡': [120.3442,31.5527],
+												'日照': [119.2786,35.5023],
+												'昆明': [102.9199,25.4663],
+												'杭州': [119.5313,29.8773],
+												'枣庄': [117.323,34.8926],
+												'柳州': [109.3799,24.9774],
+												'株洲': [113.5327,27.0319],
+												'武汉': [114.3896,30.6628],
+												'汕头': [117.1692,23.3405],
+												'江门': [112.6318,22.1484],
+												'沈阳': [123.1238,42.1216],
+												'沧州': [116.8286,38.2104],
+												'河源': [114.917,23.9722],
+												'泉州': [118.3228,25.1147],
+												'泰安': [117.0264,36.0516],
+												'泰州': [120.0586,32.5525],
+												'济南': [117.1582,36.8701],
+												'济宁': [116.8286,35.3375],
+												'海口': [110.3893,19.8516],
+												'淄博': [118.0371,36.6064],
+												'淮安': [118.927,33.4039],
+												'深圳': [114.5435,22.5439],
+												'清远': [112.9175,24.3292],
+												'温州': [120.498,27.8119],
+												'渭南': [109.7864,35.0299],
+												'湖州': [119.8608,30.7782],
+												'湘潭': [112.5439,27.7075],
+												'滨州': [117.8174,37.4963],
+												'潍坊': [119.0918,36.524],
+												'烟台': [120.7397,37.5128],
+												'玉溪': [101.9312,23.8898],
+												'珠海': [113.7305,22.1155],
+												'盐城': [120.2234,33.5577],
+												'盘锦': [121.9482,41.0449],
+												'石家庄': [114.4995,38.1006],
+												'福州': [119.4543,25.9222],
+												'秦皇岛': [119.2126,40.0232],
+												'绍兴': [120.564,29.7565],
+												'聊城': [115.9167,36.4032],
+												'肇庆': [112.1265,23.5822],
+												'舟山': [122.2559,30.2234],
+												'苏州': [120.6519,31.3989],
+												'莱芜': [117.6526,36.2714],
+												'菏泽': [115.6201,35.2057],
+												'营口': [122.4316,40.4297],
+												'葫芦岛': [120.1575,40.578],
+												'衡水': [115.8838,37.7161],
+												'衢州': [118.6853,28.8666],
+												'西宁': [101.4038,36.8207],
+												'西安': [109.1162,34.2004],
+												'贵阳': [106.6992,26.7682],
+												'连云港': [119.1248,34.552],
+												'邢台': [114.8071,37.2821],
+												'邯郸': [114.4775,36.535],
+												'郑州': [113.4668,34.6234],
+												'鄂尔多斯': [108.9734,39.2487],
+												'重庆': [107.7539,30.1904],
+												'金华': [120.0037,29.1028],
+												'铜川': [109.0393,35.1947],
+												'银川': [106.3586,38.1775],
+												'镇江': [119.4763,31.9702],
+												'长春': [125.8154,44.2584],
+												'长沙': [113.0823,28.2568],
+												'长治': [112.8625,36.4746],
+												'阳泉': [113.4778,38.0951],
+												'青岛': [120.4651,36.3373],
+												'韶关': [113.7964,24.7028]
+											}
+										},
+										{
+											name: '山东',
+											type: 'map',
+											mapType: 'china',
+											data:[],
+											markLine : {
+												smooth:true,
+												effect : {
+													show: true,
+													scaleSize: 1,
+													period: 30,
+													color: '#fff',
+													shadowBlur: 10
+												},
+												itemStyle : {
+													normal: {
+														borderWidth:1,
+														lineStyle: {
+															type: 'solid',
+															shadowBlur: 10
+														}
+													}
+												},
+												data : [
+													[{name:'山东'}, {name:'上海',value:950}],
+													[{name:'山东'}, {name:'广州',value:900}],
+													[{name:'山东'}, {name:'大连',value:800}],
+													[{name:'山东'}, {name:'南宁',value:700}],
+													[{name:'山东'}, {name:'南昌',value:402}],
+													[{name:'山东'}, {name:'拉萨',value:520}],
+													[{name:'山东'}, {name:'长春',value:240}],
+													[{name:'山东'}, {name:'包头',value:420}],
+													[{name:'山东'}, {name:'重庆',value:530}],
+													[{name:'山东'}, {name:'常州',value:280}],
+													[{name:'山东'}, {name:'银川',value:440}],
+													[{name:'山东'}, {name:'西安',value:380}],
+													[{name:'山东'}, {name:'哈尔滨',value:400}],
+													[{name:'山东'}, {name:'昆明',value:230}],
+													[{name:'山东'}, {name:'张家口',value:210}],
+													[{name:'山东'}, {name:'贵阳',value:390}],
+													[{name:'山东'}, {name:'西宁',value:201}],
+													[{name:'山东'}, {name:'大同',value:200}],
+													[{name:'山东'}, {name:'成都',value:610}],
+													[{name:'山东'}, {name:'长沙',value:310}],
+													[{name:'山东'}, {name:'武汉',value:820}],
+													[{name:'山东'}, {name:'兰州',value:520}],
+													[{name:'山东'}, {name:'北京',value:830}],
+													[{name:'山东'}, {name:'天津',value:501}],
+													[{name:'山东'}, {name:'福州',value:530}]
+												]
+											},
+											markPoint : {
+												symbol:'emptyCircle',
+												symbolSize : function (v){
+													return 10 + v/100
+												},
+												effect : {
+													show: true,
+													shadowBlur : 0
+												},
+												itemStyle:{
+													normal:{
+														label:{show:false}
+													},
+													emphasis: {
+														label:{position:'top'}
+													}
+												},
+												data : [
+													{name:'上海',value:950},
+													{name:'广州',value:90},
+													{name:'大连',value:80},
+													{name:'南宁',value:70},
+													{name:'南昌',value:60},
+													{name:'拉萨',value:50},
+													{name:'长春',value:40},
+													{name:'包头',value:30},
+													{name:'重庆',value:20},
+													{name:'常州',value:10},
+													{name:'银川',value:10},
+													{name:'西安',value:10},
+													{name:'哈尔滨',value:10},
+													{name:'昆明',value:10},
+													{name:'张家口',value:10},
+													{name:'贵阳',value:10},
+													{name:'西宁',value:10},
+													{name:'大同',value:10},
+													{name:'成都',value:10},
+													{name:'福州',value:10},
+													{name:'长沙',value:10},
+													{name:'武汉',value:10},
+													{name:'兰州',value:10},
+													{name:'北京',value:10},
+													{name:'天津',value:10},
+												]
+											}
+										}
+										
+										
+									]
+								};
+											
+
+								// 为echarts对象加载数据 
+								myChart.setOption(option); 
+								
+	var a = [1,2,3,4,5]						
+	//[["a",1],["a",2],["a",3],["a",4],["a",5]]						
+	var b = [];							
+								
+	for(var i=0;i<a.length;i++){
+		
+		b.push(["a",a[i]]);
+	}							
+								
+								
+								
+								
+								
+</script>
+	
+	
+
+
+<!--文字滚动-->
+<script>
+$.fn.extend({
+    Scroll: function(opt, callback) {
+        //参数初始化
+        if (!opt) var opt = {};
+        var _this = this.eq(0).find("ul:first");
+        var lineH = _this.find("li:first").height(), //获取行高
+            line = opt.line ? parseInt(opt.line, 10) : parseInt(this.height() / lineH, 10), //每次滚动的行数，默认为一屏，即父容器高度
+            speed = opt.speed ? parseInt(opt.speed, 10) : 500, //卷动速度，数值越大，速度越慢（毫秒）
+            timer = opt.timer ? parseInt(opt.timer, 10) : 3000; //滚动的时间间隔（毫秒）
+
+        if (line == 0) line = 1;
+        var upHeight = 0 - line * lineH;
+        //滚动函数
+        scrollUp = function() {
+            _this.animate({
+                marginTop: upHeight
+            }, speed, function() {
+                for (i = 1; i <= line; i++) {
+                    _this.find("li:first").appendTo(_this);
+                }
+                _this.css({
+                    marginTop: 0
+                });
+            });
+        }
+        //鼠标事件绑定
+        _this.hover(function() {
+            clearInterval(timerID);
+        }, function() {
+            timerID = setInterval("scrollUp()", timer);
+        }).mouseout();
+    }
+})
+
+$(function() {
+    $('#donate_carousel').Scroll({
+        line: 1,
+        speed: 800,
+        timer: 2000
+    });
+});
+</script>
+
+<!--定时器获取时间-->
+<script>
+$(function(){
+	setInterval(function(){
+		var time = new Date();
+		var month = '';
+		if(time.getMonth()>8){
+			month=time.getMonth()+1;
+		}else{
+			month='0'+(time.getMonth()+1);
+		}
+		$('#time').text(time.getFullYear()+'-'+month+'-'+time.getDate()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds());
+
+	},1000);
+	
+
+	var orderlist="";
+	for(var i=0;i<=30;i++){
+		var phone = [134,135,136,137,138,139,147,150,151,152,157,158,159,182,183,187,188,178,133,153,180,181,189,177,173,149,130,131,132,145,155,156,185,186,176,175]
+		var phone_start = Math.floor(Math.random()*36);	
+		var dai=['拐一','拐二','拐三','直口'];
+		var dai_index=Math.floor(Math.random()*4);
+		var phone1 = Math.floor(Math.random()*10).toString();		
+		var phone2 = Math.floor(Math.random()*10).toString();	
+		var phone3 = Math.floor(Math.random()*10).toString();	
+		var phone4 = Math.floor(Math.random()*10).toString();	
+		var num = Math.floor(Math.random()*100);	
+		orderlist+='<li> <span style="color:#e9e80a;">'+phone[phone_start]+'****'+phone1+phone2+phone3+phone4+'</span> <span style="color:#fff;">购买</span> <span style="color:#22ceb1;">沾化冬枣('+dai[dai_index]+')</span> <span style="color:#fff;">金额：</span> <span style="color:#e7e60b">'+num+'.00元</span></li>';
+	}
+	$('#orderlist').html(orderlist);
+	
+	
+	
+	
+})
+
+$.ajax({
+	url:'data/data.json',
+	success:function(aaa){
+		console.log(aaa.data);
+		alert()
+		
+	}
+})
+
+
+</script>
+<script>
+/**
+*  by Mantou qq:676015863
+*  数字滚动插件 v1.0
+*/
+;(function($) {
+  $.fn.numberAnimate = function(setting) {
+    var defaults = {
+      speed : 1000,//动画速度
+      num : "", //初始化值
+      iniAnimate : true, //是否要初始化动画效果
+      symbol : ',',//默认的分割符号，千，万，千万
+      dot : 0, //保留几位小数点
+    }
+    //如果setting为空，就取default的值
+    var setting = $.extend(defaults, setting);
+  
+    //如果对象有多个，提示出错
+    if($(this).length > 1){
+      alert("just only one obj!");
+      return;
+    }
+  
+    //如果未设置初始化值。提示出错
+    if(setting.num == ""){
+      alert("must set a num!");
+      return;
+    }
+    var nHtml = '<div class="mt-number-animate-dom" data-num="{{num}}">\
+            <span class="mt-number-animate-span">0</span>\
+            <span class="mt-number-animate-span">1</span>\
+            <span class="mt-number-animate-span">2</span>\
+            <span class="mt-number-animate-span">3</span>\
+            <span class="mt-number-animate-span">4</span>\
+            <span class="mt-number-animate-span">5</span>\
+            <span class="mt-number-animate-span">6</span>\
+            <span class="mt-number-animate-span">7</span>\
+            <span class="mt-number-animate-span">8</span>\
+            <span class="mt-number-animate-span">9</span>\
+            <span class="mt-number-animate-span">.</span>\
+          </div>';
+  
+    //数字处理
+    var numToArr = function(num){
+      num = parseFloat(num).toFixed(setting.dot);
+      if(typeof(num) == 'number'){
+		if(num>10000){
+			num = num/10000 ;
+			console.log(num);
+			var arrStr = num.toString().split("");  
+		}
+        
+      }else{
+        var arrStr = num.split("");
+      }
+      //console.log(arrStr);
+      return arrStr;
+    }
+  
+    //设置DOM symbol:分割符号
+    var setNumDom = function(arrStr){
+      var shtml = '<div class="mt-number-animate">';
+      for(var i=0,len=arrStr.length; i<len; i++){
+        if(i != 0 && (len-i)%3 == 0 && setting.symbol != "" && arrStr[i]!="."){
+          shtml += '<div class="mt-number-animate-dot">'+setting.symbol+'</div>'+nHtml.replace("{{num}}",arrStr[i]);
+        }else{
+          shtml += nHtml.replace("{{num}}",arrStr[i]);
+        }
+      }
+      shtml += '</div>';
+      return shtml;
+    }
+  
+    //执行动画
+    var runAnimate = function($parent){
+      $parent.find(".mt-number-animate-dom").each(function() {
+        var num = $(this).attr("data-num");
+        num = (num=="."?10:num);
+        var spanHei = $(this).height()/11; //11为元素个数
+        var thisTop = -num*spanHei+"px";
+        if(thisTop != $(this).css("top")){
+          if(setting.iniAnimate){
+            //HTML5不支持
+            if(!window.applicationCache){
+              $(this).animate({
+                top : thisTop
+              }, setting.speed);
+            }else{
+              $(this).css({
+                'transform':'translateY('+thisTop+')',
+                '-ms-transform':'translateY('+thisTop+')',   /* IE 9 */
+                '-moz-transform':'translateY('+thisTop+')',  /* Firefox */
+                '-webkit-transform':'translateY('+thisTop+')', /* Safari 和 Chrome */
+                '-o-transform':'translateY('+thisTop+')',
+                '-ms-transition':setting.speed/1000+'s',
+                '-moz-transition':setting.speed/1000+'s',
+                '-webkit-transition':setting.speed/1000+'s',
+                '-o-transition':setting.speed/1000+'s',
+                'transition':setting.speed/1000+'s'
+              }); 
+            }
+          }else{
+            setting.iniAnimate = true;
+            $(this).css({
+              top : thisTop
+            });
+          }
+        }
+      });
+    }
+  
+    //初始化
+    var init = function($parent){
+      //初始化
+      $parent.html(setNumDom(numToArr(setting.num)));
+      runAnimate($parent);
+    };
+  
+    //重置参数
+    this.resetData = function(num){
+      var newArr = numToArr(num);
+      var $dom = $(this).find(".mt-number-animate-dom");
+      if($dom.length < newArr.length){
+        $(this).html(setNumDom(numToArr(num)));
+      }else{
+        $dom.each(function(index, el) {
+          $(this).attr("data-num",newArr[index]);
+        });
+      }
+      runAnimate($(this));
+    }
+    //init
+    init($(this));
+    return this;
+  }
+})(jQuery);
+  
+$(function(){
+  
+  //初始化
+	
+  
+  //初始化
+  var numRun1 = $("#numberRun1").numberAnimate({num:'56204.30', dot:2, speed:1000, symbol:","});
+  var num1 = 56204.30;
+  setInterval(function(){
+    num1+= 112.20;
+    numRun1.resetData(num1);
+  },20000);
+  //初始化
+  var numRun2 = $("#numberRun2").numberAnimate({num:'21201', dot:0, speed:1000, symbol:","});
+  var num2 = 21201;
+  setInterval(function(){
+    num2+= 3;
+    numRun2.resetData(num2);
+  },20000);
+  //初始化
+  var numRun3 = $("#numberRun3").numberAnimate({num:'61405.30', dot:2, speed:1000, symbol:","});
+  var num3 = 61405.30;
+  setInterval(function(){
+    num3+= 5.20;
+    numRun3.resetData(num3);
+  },30000);
+  //初始化
+  var numRun4 = $("#numberRun4").numberAnimate({num:'14012', dot:0, speed:1000, symbol:","});
+  var num4 = 14012;
+  setInterval(function(){
+    num4+= 3;
+    numRun4.resetData(num4);
+  },30000);
+  //初始化
+  var numRun5 = $("#numberRun5").numberAnimate({num:'49482.10', dot:2, speed:1000, symbol:","});
+  var num5 = 49482.10;
+  setInterval(function(){
+    num5+=80.40;
+    numRun5.resetData(num5);
+  },40000);
+  //初始化
+  var numRun6 = $("#numberRun6").numberAnimate({num:'8000', dot:0, speed:1000, symbol:","});
+  var num6 = 8000;
+  setInterval(function(){
+    num6+= 6;
+    numRun6.resetData(num6);
+  },40000);
+  //初始化
+  var numRun7 = $("#numberRun7").numberAnimate({num:'34240.60', dot:2, speed:1000, symbol:","});
+  var num7 = 34240.60;
+  setInterval(function(){
+    num7+= 5.20;
+    numRun7.resetData(num7);
+  },50000);
+  //初始化
+  var numRun8 = $("#numberRun8").numberAnimate({num:'7800', dot:0, speed:1000, symbol:","});
+  var num8 = 7800;
+  setInterval(function(){
+    num8+= 3;
+    numRun8.resetData(num8);
+  },50000);
+  
+    var num = num1+num3+num5+num7;
+    var numRun = $(".numberRun").numberAnimate({num:num, dot:2, speed:1000, symbol:","});
+
+  setInterval(sss,1000);
+  function sss(){
+   var num = num1+num3+num5+num7;
+	numRun.resetData(num);
+  }
+});
+
+/*
+$(function(){
+  
+  //初始化
+  var numRun = $(".a").numberAnimate({num:'15343242.10', dot:2, speed:2000, symbol:","});
+  var num = 15343242.10;
+  setInterval(function(){
+    num+= 3433.24;
+    numRun.resetData(num);
+  },3000);
+  
+});
+*/
+</script>
+
+<script src="js/index.js"></script>
+</body>
+</html>
